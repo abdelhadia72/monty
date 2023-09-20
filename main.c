@@ -1,4 +1,7 @@
 #include "stack.h"
+#include <stdio.h>
+#define _POSIX_C_SOURCE 200809L
+#define _GNU_SOURCE
 
 /**
  * main - main function entry point
@@ -9,12 +12,13 @@
  */
 int main(int argc, char **argv)
 {
-	int file;
-	char *line = NULL;
+	/* int file; */
+	char line[1024];
 	stack_t *head = NULL;
 	char **lines = NULL;
-	size_t len = 0;
 	int num_lines = 0;
+	FILE *fp;
+	char **temp;
 
 	if (argc != 2)
 	{
@@ -22,7 +26,7 @@ int main(int argc, char **argv)
 		return (1);
 	}
 
-	FILE *fp = fopen(argv[1], "r");
+	fp = fopen(argv[1], "r");
 
 	if (fp == NULL)
 	{
@@ -30,9 +34,9 @@ int main(int argc, char **argv)
 		return (1);
 	}
 
-	while (getline(&line, &len, fp) != -1)
+	while (fgets(line, sizeof(line), fp) != NULL)
 	{
-		char **temp = malloc((num_lines + 1) * sizeof(char *));
+		temp = malloc((num_lines + 1) * sizeof(char *));
 
 		if (temp == NULL)
 		{
@@ -45,7 +49,6 @@ int main(int argc, char **argv)
 		lines[num_lines] = strdup(line);
 		num_lines++;
 	}
-	free(line);
 	fclose(fp);
 	handler(&head, lines, num_lines);
 	return (0);

@@ -1,19 +1,13 @@
 #include "stack.h"
 
-/**
- * push - push a new note tot the stack
- * @stack: pointer to the stack
- * @value: value to be added to the stack
- *
- * Return: 0 (success), -1 (failure)
- */
-
 int push(stack_t **stack, unsigned int value)
 {
+	stack_t *newNode;
+
 	if (!value)
 		return (-1);
 
-	stack_t *newNode = malloc(sizeof(stack_t));
+	newNode = malloc(sizeof(stack_t));
 
 	if (!newNode)
 	{

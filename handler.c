@@ -1,4 +1,5 @@
 #include "stack.h"
+#include <string.h>
 
 /**
  * maker - parse the ints and store them in arrays
@@ -7,7 +8,7 @@
  * @values: array to store integer values
  * @ops: array to store operation strings
  */
-void maker(char **lines, int num_lines, int values[], char *ops[])
+void maker(char **lines, int num_lines, int values[], char **ops)
 {
 	char *action = NULL;
 	char *value_str = NULL;
@@ -35,18 +36,18 @@ void maker(char **lines, int num_lines, int values[], char *ops[])
 		}
 
 		values[i] = value;
-		ops[i] = strdup(action);
+		*(ops++) = strdup(action);
 	}
 }
 
 /**
- * execute - execute the parsed ints
+ * execute - execute the the called function
  * @head: double pointer to the stack
  * @values: array of integer values
  * @ops: array of operation strings
  * @num_lines: number of ints
  */
-void execute(stack_t **head, int values[], char *ops[], int num_lines)
+void execute(stack_t **head, int values[], char **ops, int num_lines)
 {
 	int j = 0;
 	int k = 0;
@@ -78,9 +79,11 @@ void execute(stack_t **head, int values[], char *ops[], int num_lines)
  * @ops: array of operation strings
  * @num_lines: number of ints
  */
-void clearner(char **lines, char *ops[], int num_lines)
+void clearner(char **lines, char **ops, int num_lines)
 {
-	for (int i = 0; i < num_lines; i++)
+	int i;
+
+	for (i = 0; i < num_lines; i++)
 	{
 		free(lines[i]);
 		free(ops[i]);
@@ -95,7 +98,6 @@ void clearner(char **lines, char *ops[], int num_lines)
  * @num_lines: number of ints
  * Return: 0 (success)
  */
-
 int handler(stack_t **head, char **lines, int num_lines)
 {
 	int values[num_lines];
