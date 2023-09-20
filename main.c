@@ -7,11 +7,13 @@
  *
  * Return: Always 0
  */
-
 int main(int argc, char **argv)
 {
+
 	FILE *file;
-	char line[256];
+	char *line = NULL;
+	size_t len = 0;
+	ssize_t read;
 
 	if (argc < 2)
 	{
@@ -26,12 +28,23 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 
-	while (fgets(line, sizeof(line), file) != NULL)
+	while ((read = _getline(&line, &len, file)) != -1)
 	{
-		execute(line);
+		char *line_copy = strdup(line);
+		if (line_copy == NULL)
+		{
+			fprintf(stderr, "Error: Memory allocation failed\n");
+			exit(EXIT_FAILURE);
+		}
+
+		/*printf("%s\n", line_copy);*/
+		execute(line_copy);
+
+		free(line_copy);
 	}
 
 	fclose(file);
+	free(line);
 
 	return (0);
 }

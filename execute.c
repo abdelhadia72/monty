@@ -6,14 +6,15 @@
  *
  * Return: 0 on success
  */
+stack_t *head = NULL;
 
 int execute(char *line)
 {
-	stack_t *head = NULL;
-
+	/* printf("our is %s\n", line); */
 	instruction_t funs[] = {
 		{"push", push},
 		{"pall", pall},
+		{"pint", pint},
 		{NULL, NULL},
 	};
 
@@ -29,11 +30,14 @@ int execute(char *line)
 		{
 			if (strcmp(token_z, funs[i].opcode) == 0)
 			{
+				/* printf("run %s\n", token_z); */
+
 				token_z = strtok(NULL, "\n\t ");
 				if (!token_z)
 					token_z = "0";
 
 				value = atoi(token_z);
+				/* printf("run %i\n", value); */
 				funs[i].f(&head, value);
 				break;
 			}

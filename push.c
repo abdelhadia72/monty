@@ -21,4 +21,6 @@ void push(stack_t **head, unsigned int value)
 	{
 		(*head)->prev = newNode;
 	}
+
+	*head = newNode;
 }
