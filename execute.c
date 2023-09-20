@@ -1,19 +1,19 @@
 #include "monty.h"
 
+stack_t *head = NULL;
+
 int execute(char *line)
 {
-    char *token_z = NULL;
-    token_z = strtok(line, "\n\t ");
-    int i = 0;
-    int value;
-
-    stack_t *head = NULL;
-
     instruction_t funs[] = {
         {"push", push},
         {"pall", pall},
         {NULL, NULL},
     };
+
+    unsigned int value;
+    unsigned int i = 0;
+    char *token_z = NULL;
+    token_z = strtok(line, "\n\t ");
 
     while (token_z != NULL)
     {
@@ -23,11 +23,10 @@ int execute(char *line)
             {
                 token_z = strtok(NULL, "\n\t ");
                 if (!token_z)
-                    token_z = "90";
+                    token_z = "0";
 
                 value = atoi(token_z);
                 funs[i].f(&head, value);
-                // printf("The value is %i\n", value);
                 break;
             }
         }

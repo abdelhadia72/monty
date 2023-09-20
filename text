@@ -1,0 +1,176 @@
+==> execute.c <==
+#include "monty.h"
+
+stack_t *head = NULL;
+
+int execute(char *line)
+{
+    char *token_z = NULL;
+    token_z = strtok(line, "\n\t ");
+    int i = 0;
+    int value;
+
+    instruction_t funs[] = {
+        {"push", push},
+        {"pall", pall},
+        {NULL, NULL},
+    };
+
+    while (token_z != NULL)
+    {
+        for (i = 0; funs[i].opcode != NULL; i++)
+        {
+            if (strcmp(token_z, funs[i].opcode) == 0)
+            {
+                token_z = strtok(NULL, "\n\t ");
+                if (!token_z)
+                    token_z = "90";
+
+                value = atoi(token_z);
+                funs[i].f(&head, value);
+                // printf("The value is %i\n", value);
+                break;
+            }
+        }
+        token_z = strtok(NULL, "\n\t ");
+    }
+
+    return 0;
+}
+
+==> main.c <==
+#include "monty.h"
+
+int main(int argc, char **argv)
+{
+    FILE *file;
+    char *line;
+    size_t len;
+    ssize_t read;
+
+    if (argc < 2)
+    {
+        printf("USAGE: monty file\n");
+    }
+
+    file = fopen(argv[1], "r");
+    if (file == NULL)
+    {
+        printf("Error: Can't open file %s\n", argv[1]);
+        exit(EXIT_FAILURE);
+    }
+
+    line = NULL;
+    len = 0;
+
+    while ((read = getline(&line, &len, file)) != -1)
+    {
+        execute(line);
+    }
+
+    free(line);
+    fclose(file);
+
+    return 0;
+}
+==> pall.c <==
+#include "monty.h"
+
+/**
+ * pall - print all elements of the stack
+ * @stack: pointer to the stack
+ * @value: unused
+ *
+ * Return: void
+ */
+void pall(stack_t **head, unsigned int value)
+{
+    stack_t *current = *head;
+    (void)value;
+
+    while (current)
+    {
+        printf("%u ", current->n);
+        current = current->next;
+    }
+
+    printf("\n");
+}
+==> push.c <==
+#include "monty.h"
+
+/**
+ * push - push a new node to the stack
+ * @head: pointer to the stack
+ * @value: value to be added to the stack
+ *
+ */
+void push(stack_t **head, unsigned int value)
+{
+    stack_t *newNode = malloc(sizeof(stack_t));
+    if (newNode == NULL)
+    {
+        fprintf(stderr, "Error: can't malloc\n");
+        exit(EXIT_FAILURE);
+    }
+
+    newNode->n = value;
+    newNode->next = *head;
+    newNode->prev = NULL;
+
+    if (*head)
+    {
+        (*head)->prev = newNode;
+        // printf("run");
+        return;
+    }
+
+    *head = newNode;
+}
+
+==> monty.h <==
+#ifndef MONTY_H
+#define MONTY_H
+
+/* libs */
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+/**
+ * struct stack_s - doubly linked list representation of a stack (or queue)
+ * @n: integer
+ * @prev: points to the previous element of the stack (or queue)
+ * @next: points to the next element of the stack (or queue)
+ *
+ * Description: doubly linked list node structure
+ * for stack, queues, LIFO, FIFO
+ */
+typedef struct stack_s
+{
+    int n;
+    struct stack_s *prev;
+    struct stack_s *next;
+} stack_t;
+
+/**
+ * struct instruction_s - opcode and its function
+ * @opcode: the opcode
+ * @f: function to handle the opcode
+ *
+ * Description: opcode and its function
+ * for stack, queues, LIFO, FIFO
+ */
+typedef struct instruction_s
+{
+    char *opcode;
+    void (*f)(stack_t **stack, unsigned int line_number);
+} instruction_t;
+
+/* functions */
+int execute(char *line);
+void push(stack_t **head, unsigned int value);
+void pall(stack_t **head, unsigned int value);
+
+#endif

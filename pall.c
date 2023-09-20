@@ -12,11 +12,9 @@ void pall(stack_t **head, unsigned int value)
     stack_t *current = *head;
     (void)value;
 
-    while (current != NULL)
+    while (current)
     {
-        printf("%u ", current->n);
+        printf("%d\n", current->n);
         current = current->next;
     }
-
-    printf("\n");
 }
