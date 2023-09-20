@@ -1,29 +1,37 @@
 #include "monty.h"
 
+/**
+ * main - entry point for Monty interpreter
+ * @argc: number of arguments
+ * @argv: array of argument strings
+ *
+ * Return: Always 0
+ */
+
 int main(int argc, char **argv)
 {
-    FILE *file;
-    char line[256];
+	FILE *file;
+	char line[256];
 
-    if (argc < 2)
-    {
-        printf("USAGE: monty file\n");
-        exit(EXIT_FAILURE);
-    }
+	if (argc < 2)
+	{
+		printf("USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
 
-    file = fopen(argv[1], "r");
-    if (file == NULL)
-    {
-        printf("Error: Can't open file %s\n", argv[1]);
-        exit(EXIT_FAILURE);
-    }
+	file = fopen(argv[1], "r");
+	if (file == NULL)
+	{
+		printf("Error: Can't open file %s\n", argv[1]);
+		exit(EXIT_FAILURE);
+	}
 
-    while (fgets(line, sizeof(line), file) != NULL)
-    {
-        execute(line);
-    }
+	while (fgets(line, sizeof(line), file) != NULL)
+	{
+		execute(line);
+	}
 
-    fclose(file);
+	fclose(file);
 
-    return 0;
+	return (0);
 }
