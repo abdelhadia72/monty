@@ -26,6 +26,7 @@ int execute(stack_t **head, char *line, unsigned int len)
 		{"pchar", pchar},
 		{"pstr", pstr},
 		{"rotl", rotl},
+		{"rotr", rotr},
 		{NULL, NULL},
 	};
 
