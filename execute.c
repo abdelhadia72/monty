@@ -16,6 +16,7 @@ int execute(char *line)
 		{"pall", pall},
 		{"pint", pint},
 		{"pop", pop},
+		{"swap", swap},
 		{NULL, NULL},
 	};
 
@@ -38,6 +39,7 @@ int execute(char *line)
 					token_z = "0";
 
 				value = atoi(token_z);
+				/* printf("run %i\n", value); */
 				/* printf("run %i\n", value); */
 				funs[i].f(&head, value);
 				break;

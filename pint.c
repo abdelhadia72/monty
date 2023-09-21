@@ -9,16 +9,16 @@
  */
 void pint(stack_t **head, unsigned int value)
 {
-    stack_t *current = *head;
-    (void)value;
+	stack_t *current = *head;
+	(void)value;
 
-    if (current)
-    {
-        printf("%d\n", current->n);
-    }
-    else
-    {
-        fprintf(stderr, "Error: can't pint, stack empty\n");
-        exit(EXIT_FAILURE);
-    }
+	if (current)
+	{
+		printf("%d\n", current->n);
+	}
+	else
+	{
+		fprintf(stderr, "Error: can't pint, stack empty\n");
+		exit(EXIT_FAILURE);
+	}
 }

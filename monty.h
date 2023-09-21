@@ -38,13 +38,14 @@ typedef struct instruction_s
 } instruction_t;
 
 /* functions */
+int _getline(char **lineptr, size_t *n, FILE *stream);
+char *_strdup(char *str);
 int execute(char *line);
 void free_stack(stack_t **head);
 void push(stack_t **head, unsigned int value);
 void pall(stack_t **head, unsigned int value);
-int _getline(char **lineptr, size_t *n, FILE *stream);
 void pint(stack_t **head, unsigned int value);
 void pop(stack_t **head, unsigned int value);
-char *_strdup(char *str);
+void swap(stack_t **head, unsigned int value);
 
 #endif
