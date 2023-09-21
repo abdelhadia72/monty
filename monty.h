@@ -40,6 +40,8 @@ typedef struct instruction_s
 /* functions */
 int _getline(char **lineptr, size_t *n, FILE *stream);
 char *_strdup(char *str);
+int execute(stack_t **head, char *line, unsigned int len);
+void int_stack(stack_t **head);
 void free_stack(stack_t **head);
 void push(stack_t **head, unsigned int value);
 void pall(stack_t **head, unsigned int value);
@@ -49,7 +51,5 @@ void swap(stack_t **head, unsigned int value);
 void add(stack_t **head, unsigned int value);
 void nop(stack_t **head, unsigned int value);
 void sub(stack_t **head, unsigned int value);
-int execute(stack_t **head, char *line, unsigned int len);
-void int_stack(stack_t **head);
-
+void f_div(stack_t **head, unsigned int value);
 #endif
