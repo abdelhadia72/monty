@@ -23,6 +23,7 @@ int execute(stack_t **head, char *line, unsigned int len)
 		{"div", f_div},
 		{"mul", f_mul},
 		{"mod", f_mod},
+		{"pchar", pchar},
 		{NULL, NULL},
 	};
 

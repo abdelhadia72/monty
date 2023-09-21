@@ -1,5 +1,5 @@
-push 10
-push 3
-mod
+push 72
+pchar
+push 128
+pchar
 pall
-#line
