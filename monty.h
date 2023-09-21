@@ -48,5 +48,6 @@ void pint(stack_t **head, unsigned int value);
 void pop(stack_t **head, unsigned int value);
 void swap(stack_t **head, unsigned int value);
 void add(stack_t **head, unsigned int value);
+void nop(stack_t **head, unsigned int value);
 
 #endif
