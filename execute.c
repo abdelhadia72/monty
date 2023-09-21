@@ -24,6 +24,7 @@ int execute(stack_t **head, char *line, unsigned int len)
 		{"mul", f_mul},
 		{"mod", f_mod},
 		{"pchar", pchar},
+		{"pstr", pstr},
 		{NULL, NULL},
 	};
 
