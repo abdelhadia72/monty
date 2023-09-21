@@ -4,7 +4,6 @@
  * f_div - Divide the second top element of the stack by the top element
  * @head: Double pointer to the stack
  * @value: Unused argument (required by the opcode function pointer)
- * @line_number: Line number in the Monty bytecode file
  */
 void f_div(stack_t **head, unsigned int value)
 {
