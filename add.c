@@ -9,11 +9,11 @@
  */
 void add(stack_t **head, unsigned int value)
 {
+	stack_t *temp = *head;
 	(void)value;
 
 	(*head)->next->n += (*head)->n;
 
-	stack_t *temp = *head;
 	*head = (*head)->next;
 	free(temp);
 }
