@@ -65,7 +65,10 @@ int process_file(const char *filename)
 			return (EXIT_FAILURE);
 		}
 
-		result = execute(&head, line_copy, lens);
+		if (line_copy[0] != '#')
+		{
+			result = execute(&head, line_copy, lens);
+		}
 
 		if (result == -1)
 		{
