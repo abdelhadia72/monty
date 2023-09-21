@@ -52,4 +52,6 @@ void add(stack_t **head, unsigned int value);
 void nop(stack_t **head, unsigned int value);
 void sub(stack_t **head, unsigned int value);
 void f_div(stack_t **head, unsigned int value);
+void f_mul(stack_t **head, unsigned int value);
+
 #endif
