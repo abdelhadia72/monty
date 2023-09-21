@@ -4,7 +4,7 @@
  * initialize_stack - Initializes the stack to NULL.
  * @head: Double pointer to the stack
  */
-void initialize_stack(stack_t **head)
+void int_stack(stack_t **head)
 {
 	*head = NULL;
 }
