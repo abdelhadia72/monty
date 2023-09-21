@@ -2,4 +2,9 @@ push 1
 push 2
 push 3
 pall
-hello 1  3 4 
+pop
+pall
+pop
+pall
+pop
+pall

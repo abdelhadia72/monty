@@ -18,5 +18,7 @@ void pall(stack_t **head, unsigned int value)
 		current = current->next;
 	}
 
-	free_stack(head);
+	/* free_stack(head);
+	free here case an error in onther funs ?
+	*/
 }

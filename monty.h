@@ -44,5 +44,6 @@ void push(stack_t **head, unsigned int value);
 void pall(stack_t **head, unsigned int value);
 int _getline(char **lineptr, size_t *n, FILE *stream);
 void pint(stack_t **head, unsigned int value);
+void pop(stack_t **head, unsigned int value);
 
 #endif

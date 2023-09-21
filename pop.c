@@ -1,20 +1,21 @@
 #include "monty.h"
 
 /**
- * pint - print the value at the top of the stack
+ * pop - remoe top of the stack
  * @head: pointer to the stack
  * @value: unused
  *
  * Return: void
  */
-void pint(stack_t **head, unsigned int value)
+void pop(stack_t **head, unsigned int value)
 {
-    stack_t *current = *head;
     (void)value;
 
-    if (current)
+    stack_t *tmp = *head;
+    if (*head)
     {
-        printf("%d\n", current->n);
+        *head = (*head)->next;
+        free(tmp);
     }
     else
     {
