@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 
 	while ((read = _getline(&line, &len, file)) != -1)
 	{
-		char *line_copy = strdup(line);
+		char *line_copy = _strdup(line);
 		if (line_copy == NULL)
 		{
 			fprintf(stderr, "Error: Memory allocation failed\n");

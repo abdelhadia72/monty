@@ -9,9 +9,9 @@
  */
 void pop(stack_t **head, unsigned int value)
 {
+    stack_t *tmp = *head;
     (void)value;
 
-    stack_t *tmp = *head;
     if (*head)
     {
         *head = (*head)->next;
