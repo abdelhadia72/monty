@@ -12,22 +12,12 @@ int execute(stack_t **head, char *line, unsigned int len)
 {
 
 	instruction_t funs[] = {
-		{"push", push},
-		{"pall", pall},
-		{"pint", pint},
-		{"pop", pop},
-		{"swap", swap},
-		{"add", add},
-		{"nop", nop},
-		{"sub", sub},
-		{"div", f_div},
-		{"mul", f_mul},
-		{"mod", f_mod},
-		{"pchar", pchar},
-		{"pstr", pstr},
-		{"rotl", rotl},
-		{"rotr", rotr},
-		{NULL, NULL},
+{"push", push}, {"pall", pall}, {"pint", pint},
+{"pop", pop}, {"swap", swap}, {"add", add},
+{"nop", nop}, {"sub", sub}, {"div", f_div},
+{"mul", f_mul}, {"mod", f_mod}, {"pchar", pchar},
+{"pstr", pstr}, {"rotl", rotl}, {"rotr", rotr},
+{NULL, NULL},
 	};
 
 	unsigned int value;
