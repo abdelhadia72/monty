@@ -2,15 +2,15 @@
 
 /**
  * execute - execute Monty bytecode instructions
+ * @head: double pointer to the stack
  * @line: a line of Monty bytecode
+ * @len: line number in the Monty bytecode file
  *
- * Return: 0 on success
+ * Return: 0 on success, -1 on error
  */
-stack_t *head = NULL;
-
-int execute(char *line)
+int execute(stack_t **head, char *line, unsigned int len)
 {
-	/* printf("our is %s\n", line); */
+
 	instruction_t funs[] = {
 		{"push", push},
 		{"pall", pall},
@@ -26,24 +26,23 @@ int execute(char *line)
 	unsigned int i = 0;
 	char *token_z = NULL;
 
-	token_z = strtok(line, "\n\t ");
+	(void)len;
 
+	token_z = strtok(line, "\n\t ");
 	while (token_z != NULL)
 	{
 		for (i = 0; funs[i].opcode != NULL; i++)
 		{
 			if (strcmp(token_z, funs[i].opcode) == 0)
 			{
-				/* printf("run %s\n", token_z); */
-
 				token_z = strtok(NULL, "\n\t ");
 				if (!token_z)
 					token_z = "0";
 
 				value = atoi(token_z);
-				/* printf("run %i\n", value); */
-				/* printf("run %i\n", value); */
-				funs[i].f(&head, value);
+
+				funs[i].f(head, value);
+
 				break;
 			}
 		}
